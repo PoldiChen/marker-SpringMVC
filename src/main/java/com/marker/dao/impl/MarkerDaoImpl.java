@@ -1,7 +1,12 @@
 package com.marker.dao.impl;
 
+import java.io.Serializable;
 import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.stereotype.Component;
+
 import com.marker.dao.inter.IMarkerDao;
 import com.marker.pojo.Marker;
 
@@ -10,25 +15,35 @@ public class MarkerDaoImpl extends BaseDaoImpl implements IMarkerDao {
 
 	@Override
 	public Marker getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "from Marker m where m.id = ?";
+		Query query = sessionFactory.openSession().createQuery(hql);
+		query.setInteger(0, id);
+		return (Marker) query.uniqueResult();
 	}
 
 	@Override
 	public List<Marker> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "from Marker m";
+		Query query = sessionFactory.openSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Marker> markers = query.list();
+		return markers;
 	}
 
 	@Override
 	public int create(Marker marker) {
-		// TODO Auto-generated method stub
+		Serializable serializable = sessionFactory.openSession().save(marker);
+		System.out.println("serializable:" + serializable);
 		return 0;
 	}
 
 	@Override
 	public int update(int id, Marker marker) {
-		// TODO Auto-generated method stub
+		System.out.println("MarkerDaoImpl@update");
+		marker.setId(id);
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(marker);
+//		sessionFactory.openSession().saveOrUpdate("com.marker.pojo.Markera", marker);
 		return 0;
 	}
 
