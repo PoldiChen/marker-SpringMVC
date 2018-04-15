@@ -13,10 +13,11 @@
     <mvc:annotation-driven />
     
     <mvc:default-servlet-handler/>
+    
+    <!-- <mvc:resources mapping="/js/**" location="/resources/js/" />
+    <mvc:resources mapping="/css/**" location="/resources/css/" /> -->
 
-    <context:component-scan base-package="com.marker.controller">
-       <!--  <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/> -->
-    </context:component-scan>
+    <context:component-scan base-package="com.marker.controller"></context:component-scan>
     <context:component-scan base-package="com.marker.dao"></context:component-scan>
     <context:component-scan base-package="com.marker.requester"></context:component-scan>
     
@@ -30,6 +31,8 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
     
-    <import resource="spring-common.xml" />
+    <import resource="spring-hibernate.xml" />
+    <import resource="spring-tx.xml" />
+    <import resource="spring-aop.xml" />
     
 </beans> 
