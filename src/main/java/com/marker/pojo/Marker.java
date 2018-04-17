@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "marker")
 public class Marker {
@@ -29,6 +31,7 @@ public class Marker {
     private int author;
     
     @Column(name = "update_date") // 属性名和字段名不同
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateDate;
     
     // 关联的模型

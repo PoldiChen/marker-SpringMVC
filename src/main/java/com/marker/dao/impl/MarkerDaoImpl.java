@@ -14,7 +14,7 @@ public class MarkerDaoImpl extends BaseDaoImpl implements IMarkerDao {
 	@Override
 	public Marker getById(int id) {
 		String hql = "from Marker m where m.id = ?";
-		Query query = sessionFactory.openSession().createQuery(hql);
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, id);
 		return (Marker) query.uniqueResult();
 	}
@@ -22,19 +22,20 @@ public class MarkerDaoImpl extends BaseDaoImpl implements IMarkerDao {
 	@Override
 	public List<Marker> getAll() {
 		String hql = "from Marker m order by m.updateDate desc";
-		Query query = sessionFactory.openSession().createQuery(hql);
+//		Query query = sessionFactory.openSession().createQuery(hql);
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<Marker> markers = query.list();
+//		session.close();
 		return markers;
 	}
 
 	@Override
 	public int create(Marker marker) {
 //		Serializable serializable = sessionFactory.openSession().save(marker);
-		
 		Session session = sessionFactory.getCurrentSession();
 		Serializable serializable = session.save(marker);
-		
 		System.out.println("serializable:" + serializable);
 		return 0;
 	}
