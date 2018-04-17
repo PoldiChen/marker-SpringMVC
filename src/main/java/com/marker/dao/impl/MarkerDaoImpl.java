@@ -2,11 +2,9 @@ package com.marker.dao.impl;
 
 import java.io.Serializable;
 import java.util.List;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
-
 import com.marker.dao.inter.IMarkerDao;
 import com.marker.pojo.Marker;
 
@@ -23,7 +21,7 @@ public class MarkerDaoImpl extends BaseDaoImpl implements IMarkerDao {
 
 	@Override
 	public List<Marker> getAll() {
-		String hql = "from Marker m";
+		String hql = "from Marker m order by m.updateDate desc";
 		Query query = sessionFactory.openSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<Marker> markers = query.list();
@@ -32,7 +30,11 @@ public class MarkerDaoImpl extends BaseDaoImpl implements IMarkerDao {
 
 	@Override
 	public int create(Marker marker) {
-		Serializable serializable = sessionFactory.openSession().save(marker);
+//		Serializable serializable = sessionFactory.openSession().save(marker);
+		
+		Session session = sessionFactory.getCurrentSession();
+		Serializable serializable = session.save(marker);
+		
 		System.out.println("serializable:" + serializable);
 		return 0;
 	}
@@ -44,6 +46,15 @@ public class MarkerDaoImpl extends BaseDaoImpl implements IMarkerDao {
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(marker);
 //		sessionFactory.openSession().saveOrUpdate("com.marker.pojo.Markera", marker);
+		return 0;
+	}
+
+	@Override
+	public int delete(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		Marker marker = this.getById(id);
+		System.out.println(marker);
+		session.delete(marker);
 		return 0;
 	}
 

@@ -14,5 +14,7 @@ public interface IMarkerDao extends IBaseDao {
 	public int create(Marker marker);
 	
 	public int update(int id, Marker marker);
+	
+	public int delete(int id);
 
 }

@@ -1,6 +1,8 @@
 package com.marker.pojo;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,8 +28,11 @@ public class Marker {
     @Column
     private int author;
     
-    @Column(name = "update_date") // ÁĞÃûºÍÊôĞÔÃû²»Ò»ÖÂ£¬Ò»ÖÂµÄ¿ÉÒÔ²»¶¨Òåname
+    @Column(name = "update_date") // å±æ€§åå’Œå­—æ®µåä¸åŒ
     private Date updateDate;
+    
+    // å…³è”çš„æ¨¡å‹
+    private Set<Label> labels = new HashSet<Label>();  
 
 	public int getId() {
 		return id;
@@ -67,6 +72,14 @@ public class Marker {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public Set<Label> getLabels() {
+		return labels;
+	}
+
+	public void setLabels(Set<Label> labels) {
+		this.labels = labels;
 	}
     
     
