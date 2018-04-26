@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.marker.pojo.User" table="user">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="name" />
+        </property>
+        <property name="display" type="java.lang.String">
+            <column name="display" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="email" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="password" />
+        </property>
+         
+        <!-- <set name="markers" table="marker_label" inverse="true" lazy="true">  
+            <key column="label_id"></key>  
+            <many-to-many column="marker_id" class="com.marker.pojo.Marker"></many-to-many>  
+        </set> -->
+        
+    </class>
+</hibernate-mapping>
