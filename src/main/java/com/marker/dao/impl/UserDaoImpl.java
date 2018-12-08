@@ -11,6 +11,8 @@ public class UserDaoImpl extends BaseDaoImpl implements IUserDao {
 
 	@Override
 	public User getByUserName(String userName) {
+		System.out.println("UserDaoImpl@getByUserName");
+		System.out.println("userName:"+userName);
 		String hql = "from User u where u.name = ?";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setString(0, userName);

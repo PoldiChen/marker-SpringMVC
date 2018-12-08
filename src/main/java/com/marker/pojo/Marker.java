@@ -35,7 +35,9 @@ public class Marker {
     private Date updateDate;
     
     // 关联的模型
-    private Set<Label> labels = new HashSet<Label>();  
+    private Set<Label> labels = new HashSet<Label>();
+    
+    private Set<User> users = new HashSet<User>();
 
 	public int getId() {
 		return id;
@@ -83,6 +85,14 @@ public class Marker {
 
 	public void setLabels(Set<Label> labels) {
 		this.labels = labels;
+	}
+	
+	public Set<User> getUsers() {
+		return users;
+	}
+	
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
     
     

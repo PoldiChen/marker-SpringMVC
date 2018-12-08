@@ -71,6 +71,7 @@ public class UserController {
 	
 	private int checkLogin(String userName, String password) {
 		User user = userDao.getByUserName(userName);
+		System.out.println(user);
 		int result = -2; // user name not exist
 		System.out.println(user.getPassword());
 		System.out.println(MD5Encrypt.encrypt(password));

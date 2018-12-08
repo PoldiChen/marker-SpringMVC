@@ -26,5 +26,10 @@
            <many-to-many column="label_id" class="com.marker.pojo.Label"></many-to-many>  
         </set>
         
+        <set name="users" table="marker_user" lazy="false" inverse="false">  
+           <key column="marker_id"></key>  
+           <many-to-many column="user_id" class="com.marker.pojo.User"></many-to-many>  
+        </set>
+        
     </class>
 </hibernate-mapping>
